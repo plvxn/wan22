@@ -3,10 +3,8 @@
 # Использование: CIVITAI_TOKEN=your_token bash download_models.sh
 set -e
 
-# Автоопределение пути Volume
-if [ -d "/runpod-volume" ]; then
-    VOLUME="/runpod-volume/models"
-else
+# Путь Volume (можно переопределить снаружи)
+if [ -z "$VOLUME" ]; then
     VOLUME="/workspace/models"
 fi
 
