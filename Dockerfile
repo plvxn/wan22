@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.6.3-cudnn-runtime-ubuntu24.04
+FROM nvidia/cuda:12.8.1-cudnn-runtime-ubuntu24.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
@@ -22,7 +22,7 @@ ENV PATH="$VENV_PATH/bin:$PATH"
 
 # PyTorch + ComfyUI deps
 RUN pip install --upgrade pip && \
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124 && \
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 && \
     pip install runpod requests websocket-client Pillow numpy einops transformers accelerate \
                 diffusers safetensors kornia scipy imageio
 
