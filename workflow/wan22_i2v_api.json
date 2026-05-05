@@ -60,7 +60,7 @@
     "class_type": "WanVideoModelLoader",
     "inputs": {
       "model": "Wan2_2-I2V-A14B-HIGH_fp8_e4m3fn_scaled_KJ.safetensors",
-      "base_precision": "fp16_fast",
+      "base_precision": "fp16",
       "quantization": "fp8_e4m3fn_scaled",
       "load_device": "offload_device",
       "attention_mode": "sdpa"
@@ -70,7 +70,7 @@
     "class_type": "WanVideoModelLoader",
     "inputs": {
       "model": "Wan2_2-I2V-A14B-LOW_fp8_e4m3fn_scaled_KJ.safetensors",
-      "base_precision": "fp16_fast",
+      "base_precision": "fp16",
       "quantization": "fp8_e4m3fn_scaled",
       "load_device": "offload_device",
       "attention_mode": "sdpa"
