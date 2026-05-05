@@ -57,7 +57,10 @@ def wait_for_completion(prompt_id: str, client_id: str) -> dict:
     outputs = {}
     try:
         while True:
-            msg = json.loads(ws.recv())
+            raw = ws.recv()
+            if isinstance(raw, bytes):
+                continue  # binary preview frame — skip
+            msg = json.loads(raw)
             t = msg.get("type")
             data = msg.get("data", {})
             if t == "executing":
