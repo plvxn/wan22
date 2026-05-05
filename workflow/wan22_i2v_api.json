@@ -102,7 +102,8 @@
     "class_type": "WanVideoLoraSelect",
     "inputs": {
       "lora": "wan22-f4c3spl4sh-high-k3nk.safetensors",
-      "strength": 0.85
+      "strength": 0.85,
+      "merge_loras": false
     }
   },
   "13": {
@@ -116,7 +117,8 @@
     "class_type": "WanVideoLoraSelect",
     "inputs": {
       "lora": "wan22-f4c3spl4sh-low-k3nk.safetensors",
-      "strength": 0.85
+      "strength": 0.85,
+      "merge_loras": false
     }
   },
   "15": {

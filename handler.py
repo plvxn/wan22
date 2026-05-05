@@ -68,7 +68,9 @@ def wait_for_completion(prompt_id: str, client_id: str) -> dict:
                     break
             elif t == "executed":
                 if data.get("prompt_id") == prompt_id:
-                    outputs.update(data.get("output", {}))
+                    node_id = data.get("node")
+                    if node_id:
+                        outputs[node_id] = data.get("output", {})
             elif t == "execution_error":
                 if data.get("prompt_id") == prompt_id:
                     raise RuntimeError(
