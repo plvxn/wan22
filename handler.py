@@ -58,14 +58,21 @@ def wait_for_completion(prompt_id: str, client_id: str) -> dict:
     try:
         while True:
             msg = json.loads(ws.recv())
-            if msg["type"] == "executing":
-                data = msg["data"]
+            t = msg.get("type")
+            data = msg.get("data", {})
+            if t == "executing":
                 if data.get("node") is None and data.get("prompt_id") == prompt_id:
                     break
-            elif msg["type"] == "executed":
-                data = msg["data"]
+            elif t == "executed":
                 if data.get("prompt_id") == prompt_id:
                     outputs.update(data.get("output", {}))
+            elif t == "execution_error":
+                if data.get("prompt_id") == prompt_id:
+                    raise RuntimeError(
+                        f"ComfyUI node {data.get('node_id')} error: "
+                        f"{data.get('exception_type')}: {data.get('exception_message')}\n"
+                        f"Traceback: {''.join(data.get('traceback', []))}"
+                    )
     finally:
         ws.close()
     return outputs
